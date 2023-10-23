@@ -57,7 +57,7 @@ let inp = null; // input
 let scr = null; // screen
 let aud = null; // audio
 
-const player = {
+let player = {
 	x: 90,
 	y: 30,
 	speed: 0.5,
@@ -90,6 +90,7 @@ const mushrooms = [
 let numberOfGrabbedMushrooms = 0;
 
 let randomColor = 1;
+let message = 'Welcome to Bitmelo!';
 
 // initialization
 engine.onInit = () => {
@@ -130,7 +131,7 @@ engine.onUpdate = () => {
 	}
 	
 	scr.drawText(
-		'Welcome to Bitmelo!',
+		message,
 		50,
 		90 + Math.floor( textPositionOffset ),
 		textMainColor,
@@ -233,6 +234,7 @@ function updatePlayer() {
 				numberOfGrabbedMushrooms += 1;
 				if (mushroom.ispoison){
 				  player.speed = 0;
+				  message = "GAME OVER";
 				}
 				aud.playSound(
 					1,
