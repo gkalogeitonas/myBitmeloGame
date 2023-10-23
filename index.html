@@ -90,7 +90,15 @@ const mushrooms = [
 let numberOfGrabbedMushrooms = 0;
 
 let randomColor = 1;
-let message = 'Welcome to Bitmelo!';
+//let message = 'Welcome to Bitmelo!';
+
+let messageConfig = {
+		text: "Welcome to Bitmelo!",
+		x: 50,
+		scale: 1,
+		rotation: 0
+    };
+
 
 // initialization
 engine.onInit = () => {
@@ -129,14 +137,15 @@ engine.onUpdate = () => {
 	if ( numberOfGrabbedMushrooms > 1 ) {
 		textPositionOffset = Math.sin( engine.realTimeSinceGameStart * 10 ) * 8;
 	}
-	
+
+
 	scr.drawText(
-		message,
-		50,
+		messageConfig.text,
+		messageConfig.x,
 		90 + Math.floor( textPositionOffset ),
 		textMainColor,
-		1,
-		0
+		messageConfig.scale,
+		messageConfig.rotation
 	);
 };
 
@@ -232,17 +241,27 @@ function updatePlayer() {
 			if ( distance <= 12 ) {
 				mushroom.wasGrabbed = true;
 				numberOfGrabbedMushrooms += 1;
+
 				if (mushroom.ispoison){
 				  player.speed = 0;
-				  message = "GAME OVER";
-				}
-				aud.playSound(
+				  messageConfig.text = "GAME OVER";
+				  aud.playSound(
+					1,
+					bitmelo.Notes.C2,
+					48,
+					0.25,
+					1
+				);
+				}else{
+				   messageConfig.text  = "You have grabbed a mushroom";
+				  aud.playSound(
 					1,
 					bitmelo.Notes.E3,
 					48,
 					0.25,
 					1
 				);
+				}
 			}
 		}
 	}
