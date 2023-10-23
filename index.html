@@ -245,6 +245,7 @@ function updatePlayer() {
 				if (mushroom.ispoison){
 				  player.speed = 0;
 				  messageConfig.text = "GAME OVER";
+				  messageConfig.x = 70;
 				  aud.playSound(
 					1,
 					bitmelo.Notes.C2,
@@ -254,6 +255,7 @@ function updatePlayer() {
 				);
 				}else{
 				   messageConfig.text  = "You have grabbed a mushroom";
+				   messageConfig.x = 15;
 				  aud.playSound(
 					1,
 					bitmelo.Notes.E3,
